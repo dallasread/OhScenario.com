@@ -1,0 +1,23 @@
+name: OhScenario!
+markdown: kramdown
+url: http://www.OhScenario.com/
+navigation:
+- text: Solutions
+  url: /solutions/index.html
+  permalink: /docs/
+- text: Company
+  url: /company/index.html
+  permalink: /docs/
+- text: Customers
+  url: /customers/index.html
+  permalink: /docs/
+- text: Support
+  url: /docs/index.html
+  permalink: /docs/
+- text: Blog
+  url: /blog/index.html
+  permalink: /docs/
+sass:
+  sass_dir: assets/css
+coffee:
+  coffee_dir: assets/js
