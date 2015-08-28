@@ -51,7 +51,12 @@ for (var i = 0; i < rawParams.length; i++) {
 if (params.website) {
     $('#website').val( params.website );
     $('.intro-content').trigger('submit');
-    window.scenario = window.Scenario.create('#scenario', options(params.website));
+
+    if (!window.scenario) {
+        window.scenario = window.Scenario.create('#scenario', options(params.website));
+    } else {
+        window.scenario.steps = options(params.website).steps;
+    }
 }
 
 $(document).on('click', '.save, .sign-up', function() {
