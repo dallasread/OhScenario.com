@@ -199,7 +199,6 @@ Scenario.definePrototype({
         var _ = this,
             step;
 
-        _.render();
         _.$element.find('select').change();
         _.$element.find('.scenario').attr('class', 'scenario running');
         _.$element.find('.step').attr('class', 'step waiting');
@@ -298,10 +297,6 @@ Scenario.definePrototype({
     edit: function edit() {
         var _ = this;
 
-        if (_.socket) {
-            _.socket.emit('quit');
-        }
-
         _.render();
         _.$element.find('select').get(0).focus();
     },
@@ -311,12 +306,8 @@ Scenario.definePrototype({
 
         return {
             steps: _.steps,
-            options: {
-                desiredCapabilities: {
-                    browserName: 'firefox'
-                },
-                delay: 500
-            }
+            delay: 500,
+            browser: 'firefox'
         };
     },
 });

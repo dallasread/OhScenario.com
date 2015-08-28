@@ -16,6 +16,12 @@
         }
     }
 
+    &.running {
+        .run-scenario {
+            display: none;
+        }
+    }
+
     &.editing {
         .has-select.hover, .has-select:hover, .has-select:focus, [contenteditable]:hover, [contenteditable]:focus {
             color: blue;
