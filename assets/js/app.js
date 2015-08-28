@@ -1,3 +1,29 @@
+function options(website) {
+    return {
+        steps: {
+            0: {
+                action: 'visit',
+                target: 'http://' + website
+            },
+            1: {
+                action: 'click',
+                target: 'h1'
+            },
+            2: {
+                action: 'fill',
+                target: 'input',
+                value: 'me@' + website
+            },
+            3: {
+                action: 'assert',
+                target: 'input',
+                attribute: 'value',
+                value: 'me@' + website
+            }
+        }
+    };
+}
+
 $(document).on('submit', '.intro-content', function() {
     var website = $('#website').val();
 
@@ -9,6 +35,7 @@ $(document).on('submit', '.intro-content', function() {
     $('#features').show();
     $('h2#website').text( website );
     $('body').scrollTop( $('#features').offset().top );
+    window.scenario = window.Scenario.create('#scenario', options(website));
     return false;
 });
 
@@ -24,28 +51,7 @@ for (var i = 0; i < rawParams.length; i++) {
 if (params.website) {
     $('#website').val( params.website );
     $('.intro-content').trigger('submit');
-
-    window.scenario = window.Scenario.create('#scenario', {
-        steps: {
-            0: {
-                action: 'visit',
-                target: 'http://dallasread.com'
-            },
-            1: {
-                action: 'click',
-                target: '#sign-in'
-            },
-            2: {
-                action: 'fill',
-                target: 'Email',
-                value: 'me@dallasread.com'
-            },
-            3: {
-                action: 'click',
-                target: 'Submit'
-            }
-        }
-    });
+    window.scenario = window.Scenario.create('#scenario', options(params.website));
 }
 
 $(document).on('click', '.save, .sign-up', function() {
