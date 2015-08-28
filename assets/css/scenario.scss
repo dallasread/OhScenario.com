@@ -1,0 +1,169 @@
+.scenario {
+    background: #eee;
+    padding: 10px;
+
+    .save-scenario, .edit-scenario {
+        display: none;
+    }
+
+    &.running, &.success {
+        .save-scenario, .edit-scenario, .again {
+            display: inline-block;
+        }
+
+        .add-step, select {
+            display: none;
+        }
+    }
+
+    &.editing {
+        .has-select.hover, .has-select:hover, .has-select:focus, [contenteditable]:hover, [contenteditable]:focus {
+            color: blue;
+            font-weight: bold;
+        }
+    }
+
+    &.editing .run-scenario,
+    &.running .save-scenario,
+    &.success .save-scenario {
+        padding: 20px 50px;
+        font-size: 24px;
+        line-height: 24px;
+        background: #43B8F3;
+        font-weight: normal;
+    }
+
+    .again {
+        display: none;
+    }
+
+    .button {
+        background: #bbb;
+        font-weight: normal;
+    }
+
+    .steps {
+        margin-bottom: 10px;
+
+        .step {
+            position: relative;
+            background: #fff;
+            padding: 0 10px 0 50px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+
+            p {
+                font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace;
+                margin: 0 !important;
+                padding: 10px 5px !important;
+                border: 0;
+                background: transparent;
+                border-radius: 0;
+                width: auto !important;
+                display: inline-block;
+                outline: none;
+                position: relative;
+
+                span {
+                    display: inline-block;
+                    outline: none;
+                    min-width: 1px;
+                }
+
+                select {
+                    position: absolute;
+                    top: 10px;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    opacity: 0;
+                }
+            }
+
+            .state {
+                position: absolute;
+                left: 10px;
+
+                i {
+                    color: inherit;
+                    display: none;
+                }
+            }
+
+            &.running {
+                color: #43B8F3;
+
+                .step-running {
+                    display: inline-block;
+                }
+
+                select {
+                    display: none;
+                }
+            }
+
+            &.success {
+                color: limegreen;
+
+                .step-success {
+                    display: inline-block;
+                }
+            }
+
+            &.error {
+                color: red;
+
+                .step-error {
+                    display: inline-block;
+                }
+
+                .error {
+                    display: block;
+                    text-align: left !important;
+                    margin-top: -10px !important;
+                }
+            }
+
+            &.editing {
+                .step-editing {
+                    color: #eee;
+                    display: inline-block;
+                }
+
+                .ing {
+                    display: none;
+                }
+            }
+
+            &.waiting {
+                color: #ccc;
+                display: none;
+
+                .step-waiting {
+                    display: inline-block;
+                }
+            }
+
+            .error {
+                display: none;
+            }
+
+            .remove-step {
+                position: absolute;
+                right: 10px;
+                cursor: pointer;
+                color: #eee;
+            }
+        }
+
+    }
+
+    .actions {
+        text-align: right;
+        margin: 10px;
+
+        .button {
+            margin-left: 10px;
+        }
+    }
+}
