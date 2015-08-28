@@ -1,7 +1,7 @@
 name: OhScenario!
 markdown: kramdown
 url: http://www.OhScenario.com/
-run: http://app.remetric.com:8111
+run: http://run.ohscenario.com
 navigation:
 - text: Solutions
   url: /solutions/index.html
