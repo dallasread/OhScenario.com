@@ -679,6 +679,8 @@ img {
     display: inline-block; }
   .scenario.running .add-step, .scenario.running select, .scenario.success .add-step, .scenario.success select {
     display: none; }
+  .scenario.running .run-scenario {
+    display: none; }
   .scenario.editing .has-select.hover, .scenario.editing .has-select:hover, .scenario.editing .has-select:focus, .scenario.editing [contenteditable]:hover, .scenario.editing [contenteditable]:focus {
     color: blue;
     font-weight: bold; }

@@ -1,5 +1,6 @@
 function options(website) {
     return {
+        delay: 500,
         steps: {
             0: {
                 action: 'visit',
