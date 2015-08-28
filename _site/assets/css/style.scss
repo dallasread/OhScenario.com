@@ -106,9 +106,7 @@ input[type="text"].domain-name { width:48%; margin-right:10px; margin-bottom:40p
 #desk h2,
 #features h2 { letter-spacing:-2px; font-family:"Montserrat",sans-serif; font-weight:400; font-size: 55px; text-align:center; line-height: 1.4 !important; }
 
-#customers p,
-#desk p,
-#features p { font-weight:300; margin:0 auto 35px; padding:0; width:80%; text-align:center; }
+p { font-weight:300; margin:0 auto 35px; padding:0; width:80%; text-align:center; }
 #desk p, #features p { font-size:27px; line-height:1.5; }
 #features li p { font-size:inherit; line-height:inherit; }
 #features {
@@ -120,6 +118,11 @@ input[type="text"].domain-name { width:48%; margin-right:10px; margin-bottom:40p
 
 
 /* Features */
+#features {
+    .shell {
+        max-width: 1024px;
+    }
+}
 #features { padding:70px 0 30px; background:#fff; -moz-box-shadow:0 -5px 0 rgba(0,0,0,0.10); -webkit-box-shadow:0 -5px 0 rgba(0,0,0,0.10); box-shadow:0 -5px 0 rgba(0,0,0,0.10); }
 #features h2 { color:#992924; }
 #features p { margin:0 auto 40px; }
@@ -183,10 +186,6 @@ img { max-width: 100%; }
     background: #111;
     background: rgba(0, 0, 0, 0.88);
     overflow: auto;
-}
-
-.step[data-action="visit"] .td-value, .step[data-action="click"] .td-value {
-    display: none;
 }
 
 #features, #sign-up {

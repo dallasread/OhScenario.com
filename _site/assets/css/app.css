@@ -402,9 +402,7 @@ input[type="text"].domain-name {
   text-align: center;
   line-height: 1.4 !important; }
 
-#customers p,
-#desk p,
-#features p {
+p {
   font-weight: 300;
   margin: 0 auto 35px;
   padding: 0;
@@ -426,6 +424,9 @@ input[type="text"].domain-name {
   background-size: cover; }
 
 /* Features */
+#features .shell {
+  max-width: 1024px; }
+
 #features {
   padding: 70px 0 30px;
   background: #fff;
@@ -596,9 +597,6 @@ img {
   background: rgba(0, 0, 0, 0.88);
   overflow: auto; }
 
-.step[data-action="visit"] .td-value, .step[data-action="click"] .td-value {
-  display: none; }
-
 #features, #sign-up {
   display: none; }
 
@@ -672,3 +670,102 @@ img {
       content: '';
       display: block;
       clear: both; } }
+.scenario {
+  background: #eee;
+  padding: 10px; }
+  .scenario .save-scenario, .scenario .edit-scenario {
+    display: none; }
+  .scenario.running .save-scenario, .scenario.running .edit-scenario, .scenario.running .again, .scenario.success .save-scenario, .scenario.success .edit-scenario, .scenario.success .again {
+    display: inline-block; }
+  .scenario.running .add-step, .scenario.running select, .scenario.success .add-step, .scenario.success select {
+    display: none; }
+  .scenario.editing .has-select.hover, .scenario.editing .has-select:hover, .scenario.editing .has-select:focus, .scenario.editing [contenteditable]:hover, .scenario.editing [contenteditable]:focus {
+    color: blue;
+    font-weight: bold; }
+  .scenario.editing .run-scenario, .scenario.running .save-scenario, .scenario.success .save-scenario {
+    padding: 20px 50px;
+    font-size: 24px;
+    line-height: 24px;
+    background: #43B8F3;
+    font-weight: normal; }
+  .scenario .again {
+    display: none; }
+  .scenario .button {
+    background: #bbb;
+    font-weight: normal; }
+  .scenario .steps {
+    margin-bottom: 10px; }
+    .scenario .steps .step {
+      position: relative;
+      background: #fff;
+      padding: 0 10px 0 50px;
+      margin-bottom: 5px;
+      border-radius: 5px; }
+      .scenario .steps .step p {
+        font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace;
+        margin: 0 !important;
+        padding: 10px 5px !important;
+        border: 0;
+        background: transparent;
+        border-radius: 0;
+        width: auto !important;
+        display: inline-block;
+        outline: none;
+        position: relative; }
+        .scenario .steps .step p span {
+          display: inline-block;
+          outline: none;
+          min-width: 1px; }
+        .scenario .steps .step p select {
+          position: absolute;
+          top: 10px;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          opacity: 0; }
+      .scenario .steps .step .state {
+        position: absolute;
+        left: 10px; }
+        .scenario .steps .step .state i {
+          color: inherit;
+          display: none; }
+      .scenario .steps .step.running {
+        color: #43B8F3; }
+        .scenario .steps .step.running .step-running {
+          display: inline-block; }
+        .scenario .steps .step.running select {
+          display: none; }
+      .scenario .steps .step.success {
+        color: limegreen; }
+        .scenario .steps .step.success .step-success {
+          display: inline-block; }
+      .scenario .steps .step.error {
+        color: red; }
+        .scenario .steps .step.error .step-error {
+          display: inline-block; }
+        .scenario .steps .step.error .error {
+          display: block;
+          text-align: left !important;
+          margin-top: -10px !important; }
+      .scenario .steps .step.editing .step-editing {
+        color: #eee;
+        display: inline-block; }
+      .scenario .steps .step.editing .ing {
+        display: none; }
+      .scenario .steps .step.waiting {
+        color: #ccc;
+        display: none; }
+        .scenario .steps .step.waiting .step-waiting {
+          display: inline-block; }
+      .scenario .steps .step .error {
+        display: none; }
+      .scenario .steps .step .remove-step {
+        position: absolute;
+        right: 10px;
+        cursor: pointer;
+        color: #eee; }
+  .scenario .actions {
+    text-align: right;
+    margin: 10px; }
+    .scenario .actions .button {
+      margin-left: 10px; }

@@ -1,12 +1,3 @@
-window.scenario = window.Scenario.create('#scenario', {
-    steps: {
-        0: {
-            action: 'visit',
-            target: 'http://dallasread.com'
-        }
-    }
-});
-
 $(document).on('submit', '.intro-content', function() {
     var website = $('#website').val();
 
@@ -33,7 +24,28 @@ for (var i = 0; i < rawParams.length; i++) {
 if (params.website) {
     $('#website').val( params.website );
     $('.intro-content').trigger('submit');
-    window.scenario.run();
+
+    window.scenario = window.Scenario.create('#scenario', {
+        steps: {
+            0: {
+                action: 'visit',
+                target: 'http://dallasread.com'
+            },
+            1: {
+                action: 'click',
+                target: '#sign-in'
+            },
+            2: {
+                action: 'fill',
+                target: 'Email',
+                value: 'me@dallasread.com'
+            },
+            3: {
+                action: 'click',
+                target: 'Submit'
+            }
+        }
+    });
 }
 
 $(document).on('click', '.save, .sign-up', function() {
