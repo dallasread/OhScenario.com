@@ -202,7 +202,7 @@ Scenario.definePrototype({
         _.$element.find('select').change();
         _.$element.find('.scenario').attr('class', 'scenario running');
         _.$element.find('.step').attr('class', 'step waiting');
-        _.$element.find('.step').get(0).attr('class', 'step running');
+        _.$element.find('.steps .step:first-child').attr('class', 'step running');
         _.$element.find('[contenteditable]').removeAttr('contenteditable');
 
         console.log('Running Scenario', _.toJSON());
