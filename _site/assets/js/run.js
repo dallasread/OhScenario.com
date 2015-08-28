@@ -199,6 +199,7 @@ Scenario.definePrototype({
         var _ = this,
             step;
 
+        _.render();
         _.$element.find('select').change();
         _.$element.find('.scenario').attr('class', 'scenario running');
         _.$element.find('.step').attr('class', 'step waiting');
