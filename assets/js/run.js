@@ -124,9 +124,9 @@ var CustomElement = require('generate-js-custom-element'),
                         name = $el.attr('name');
 
                     _.steps[id][name] = $el.val();
-                    _.renderStep(id);
+                    step = _.renderStep(id);
 
-                    _.$element.find('.step[data-id="' + id + '"]').find('select[name="' + name + '"]').get(0).focus();
+                    step.find('select[name="' + name + '"]').get(0).focus();
                 }
             },
             keydown: {
@@ -186,6 +186,7 @@ var Scenario = CustomElement.generate(function Scenario($element, options) {
     _.steps = _.steps || {};
 
     for (var key in steps) {
+        steps[key].id = key;
         _.addStep(steps[key]);
     }
 
@@ -275,10 +276,15 @@ Scenario.definePrototype({
 
     renderStep: function renderStep(id) {
         var _ = this,
-            step = _.steps[id],
-            html = $(_.templates.step(step));
+            step = _.steps[id];
+
+        step.id = id;
+
+        var html = $(_.templates.step(step));
 
         _.$element.find('.step[data-id="' + id + '"]').replaceWith( html );
+
+        return html;
     },
 
     removeStep: function removeStep(id) {
@@ -338,7 +344,7 @@ module.exports = {
 module.exports = "<div class=\"scenario editing\">\n    <div class=\"steps\">\n        {{#each steps}}\n            {{> step}}\n        {{/each}}\n    </div>\n\n    <button class=\"add-step button\"><i class=\"fa fa-plus-sign\"></i> Add Step</button>\n\n    <div class=\"actions\">\n        <button class=\"edit-scenario button\">Make Changes</button>\n        <button class=\"run-scenario button\">Run Test <span class=\"again\">Again</span></button>\n        <button class=\"save-scenario button\">Save Test for Later</button>\n    </div>\n</div>\n";
 
 },{}],6:[function(require,module,exports){
-module.exports = "<div class=\"step editing\" data-id=\"{{id}}\" data-action=\"{{action}}\">\n    <p class=\"remove-step\"><i class=\"fa fa-trash\"></i></p>\n\n    <p class=\"state\">\n        <i class=\"fa fa-ellipsis-h step-waiting\"></i>\n        <i class=\"fa fa-check step-editing\"></i>\n        <i class=\"fa fa-check step-success\"></i>\n        <i class=\"fa fa-times step-error\"></i>\n        <i class=\"fa fa-spinner fa-spin step-running\"></i>\n    </p>\n\n    <p class=\"has-select\">\n        <span class=\"select-target\">{{capitalize action}}</span><span class=\"ing\">ing</span>\n\n        <select name=\"action\">\n            <option {{#is action 'visit'}}selected=\"selected\"{{/is}} data-value=\"Visit\" value=\"visit\">Visit</option>\n            <option {{#is action 'click'}}selected=\"selected\"{{/is}} data-value=\"Click\" value=\"click\">Click</option>\n            <option {{#is action 'fill'}}selected=\"selected\"{{/is}} data-value=\"Fill\" value=\"fill\">Fill</option>\n            <option {{#is action 'assert'}}selected=\"selected\"{{/is}} data-value=\"Assert\" value=\"assert\">Assert</option>\n        </select>\n    </p>\n\n    {{#is action 'visit'}}\n        <p class=\"target has-editable\">\"<span class=\"editable\" name=\"target\" contenteditable>{{target}}</span>\"</p>\n    {{/is}}\n\n    {{#is action 'click'}}\n        <p class=\"target has-editable\">\"<span class=\"editable\" name=\"target\" contenteditable>{{target}}</span>\"</p>\n    {{/is}}\n\n    {{#is action 'fill'}}\n        <p class=\"target has-editable\">\"<span class=\"editable\" name=\"target\" contenteditable>{{target}}</span>\"</p>\n\n        <p>with</p>\n\n        <p class=\"value has-editable\">\"<span class=\"editable\" name=\"value\" contenteditable>{{value}}</span>\"</p>\n    {{/is}}\n\n    {{#is action 'assert'}}\n        <p class=\"target has-editable\">\"<span class=\"editable\" name=\"target\" contenteditable>{{target}}</span>\"</p>\n\n        <p class=\"has-select\">\n            <span class=\"select-target\">\n                {{#if attribute}}\n                    {{attribute}}\n                {{else}}\n                    content\n                {{/if}}\n            </span>\n\n            <select name=\"attribute\">\n                <option {{#isnt attribute 'value'}}selected=\"selected\"{{/isnt}} value=\"content\">Content</option>\n                <option {{#is attribute 'value'}}selected=\"selected\"{{/is}} value=\"value\">Value</option>\n            </select>\n        </p>\n\n        <p class=\"has-select\">\n            <span class=\"select-target\">\n                {{#if matcher}}\n                    {{matcher}}\n                {{else}}\n                    is\n                {{/if}}\n            </span>\n\n            <select name=\"matcher\">\n                <option {{#isnt matcher 'is not'}}{{#isnt matcher 'contains'}}{{#isnt matcher 'does not contain'}}selected=\"selected\"{{/isnt}}{{/isnt}}{{/isnt}} value=\"is\">Is</option>\n                <option {{#is matcher 'is not'}}selected=\"selected\"{{/is}} value=\"is not\">Is Not</option>\n                <option {{#is matcher 'contains'}}selected=\"selected\"{{/is}} value=\"contains\">Contains</option>\n                <option {{#is matcher 'does not contain'}}selected=\"selected\"{{/is}} value=\"does not contain\">Does Not Contain</option>\n            </select>\n        </p>\n\n        <p class=\"value has-editable\">\"<span class=\"editable\" name=\"value\" contenteditable>{{value}}</span>\"</p>\n    {{/is}}\n\n    <p class=\"error\"></p>\n</div>\n";
+module.exports = "<div class=\"step editing\" data-id=\"{{id}}\">\n    <p class=\"remove-step\"><i class=\"fa fa-trash\"></i></p>\n\n    <p class=\"state\">\n        <i class=\"fa fa-ellipsis-h step-waiting\"></i>\n        <i class=\"fa fa-check step-editing\"></i>\n        <i class=\"fa fa-check step-success\"></i>\n        <i class=\"fa fa-times step-error\"></i>\n        <i class=\"fa fa-spinner fa-spin step-running\"></i>\n    </p>\n\n    <p class=\"has-select\">\n        <span class=\"select-target\">{{capitalize action}}</span><span class=\"ing\">ing</span>\n\n        <select name=\"action\">\n            <option {{#is action 'visit'}}selected=\"selected\"{{/is}} data-value=\"Visit\" value=\"visit\">Visit</option>\n            <option {{#is action 'click'}}selected=\"selected\"{{/is}} data-value=\"Click\" value=\"click\">Click</option>\n            <option {{#is action 'fill'}}selected=\"selected\"{{/is}} data-value=\"Fill\" value=\"fill\">Fill</option>\n            <option {{#is action 'assert'}}selected=\"selected\"{{/is}} data-value=\"Assert\" value=\"assert\">Assert</option>\n        </select>\n    </p>\n\n    {{#is action 'visit'}}\n        <p class=\"target has-editable\">\"<span class=\"editable\" name=\"target\" contenteditable>{{target}}</span>\"</p>\n    {{/is}}\n\n    {{#is action 'click'}}\n        <p class=\"target has-editable\">\"<span class=\"editable\" name=\"target\" contenteditable>{{target}}</span>\"</p>\n    {{/is}}\n\n    {{#is action 'fill'}}\n        <p class=\"target has-editable\">\"<span class=\"editable\" name=\"target\" contenteditable>{{target}}</span>\"</p>\n\n        <p>with</p>\n\n        <p class=\"value has-editable\">\"<span class=\"editable\" name=\"value\" contenteditable>{{value}}</span>\"</p>\n    {{/is}}\n\n    {{#is action 'assert'}}\n        <p class=\"target has-editable\">\"<span class=\"editable\" name=\"target\" contenteditable>{{target}}</span>\"</p>\n\n        <p class=\"has-select\">\n            <span class=\"select-target\">\n                {{#if attribute}}\n                    {{attribute}}\n                {{else}}\n                    content\n                {{/if}}\n            </span>\n\n            <select name=\"attribute\">\n                <option {{#isnt attribute 'value'}}selected=\"selected\"{{/isnt}} value=\"content\">Content</option>\n                <option {{#is attribute 'value'}}selected=\"selected\"{{/is}} value=\"value\">Value</option>\n            </select>\n        </p>\n\n        <p class=\"has-select\">\n            <span class=\"select-target\">\n                {{#if matcher}}\n                    {{matcher}}\n                {{else}}\n                    is\n                {{/if}}\n            </span>\n\n            <select name=\"matcher\">\n                <option {{#isnt matcher 'is not'}}{{#isnt matcher 'contains'}}{{#isnt matcher 'does not contain'}}selected=\"selected\"{{/isnt}}{{/isnt}}{{/isnt}} value=\"is\">Is</option>\n                <option {{#is matcher 'is not'}}selected=\"selected\"{{/is}} value=\"is not\">Is Not</option>\n                <option {{#is matcher 'contains'}}selected=\"selected\"{{/is}} value=\"contains\">Contains</option>\n                <option {{#is matcher 'does not contain'}}selected=\"selected\"{{/is}} value=\"does not contain\">Does Not Contain</option>\n            </select>\n        </p>\n\n        <p class=\"value has-editable\">\"<span class=\"editable\" name=\"value\" contenteditable>{{value}}</span>\"</p>\n    {{/is}}\n\n    <p class=\"error\"></p>\n</div>\n";
 
 },{}],7:[function(require,module,exports){
 
