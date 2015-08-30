@@ -218,6 +218,7 @@ Scenario.definePrototype({
         _.socket.on('disconnect', function(){
             _.socket.off();
             _.socket = null;
+            alert('Something went wrong. The test did not complete.');
             _.render();
         });
 
