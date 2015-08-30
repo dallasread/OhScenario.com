@@ -298,9 +298,11 @@ Scenario.definePrototype({
     edit: function edit() {
         var _ = this;
 
-        _.socket.emit('quit');
         _.render();
-        _.$element.find('select').get(0).focus();
+        _.socket.emit('quit', function() {
+            _.render();
+            _.$element.find('select').get(0).focus();
+        });
     },
 
     toJSON: function toJSON() {
