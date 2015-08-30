@@ -232,23 +232,26 @@ Scenario.definePrototype({
 
         _.socket.on('step-finish', function(err, data) {
             console.log('step-finish ~>', err, data);
+            var scenario = _.$element.find('.scenario');
 
-            step = _.$element.find('.step[data-id="' + data.id + '"]');
+            if (scenario.hasClass('running')) {
+                step = _.$element.find('.step[data-id="' + data.id + '"]');
 
-            if (err) {
-                switch (err) {
-                case 'NoSuchElementError':
-                    err = 'The element "' + data.target + '" was not found on the page.';
-                    break;
-                case 'InvalidSelectorError':
-                    err += ': Not sure what this one means!';
-                    break;
+                if (err) {
+                    switch (err) {
+                    case 'NoSuchElementError':
+                        err = 'The element "' + data.target + '" was not found on the page.';
+                        break;
+                    case 'InvalidSelectorError':
+                        err += ': Not sure what this one means!';
+                        break;
+                    }
+
+                    step.attr('class', 'step error');
+                    step.find('.error').text(err);
+                } else {
+                    step.attr('class', 'step success');
                 }
-
-                step.attr('class', 'step error');
-                step.find('.error').text(err);
-            } else {
-                step.attr('class', 'step success');
             }
         });
 
@@ -302,7 +305,7 @@ Scenario.definePrototype({
         _.render();
 
         _.socket.emit('quit', function() {
-            _.$element.css('opacity', '');
+            _.$element.css('opacity', 1);
             _.render();
             _.$element.find('select').get(0).focus();
         });
