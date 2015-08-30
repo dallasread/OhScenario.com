@@ -258,7 +258,10 @@ Scenario.definePrototype({
         _.socket.on('scenario-finish', function(err, data) {
             console.log('scenario-finish ~>', err, data);
             var scenario = _.$element.find('.scenario');
-            scenario.attr('class', 'scenario success');
+
+            if (scenario.hasClass('running')) {
+                scenario.attr('class', 'scenario success');
+            }
         });
     },
 
