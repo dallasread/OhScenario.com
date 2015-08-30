@@ -307,7 +307,7 @@ Scenario.definePrototype({
         _.$element.css('opacity', 0.5);
         _.render();
 
-        _.socket.emit('quit', function() {
+        _.socket && _.socket.emit('quit', function() {
             _.$element.css('opacity', 1);
             _.render();
             _.$element.find('select').get(0).focus();
