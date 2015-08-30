@@ -1,7 +1,7 @@
 name: OhScenario!
 markdown: kramdown
 url: http://www.OhScenario.com/
-run: http://run.ohscenario.com
+run: http://run.ohscenario.com:8111
 navigation:
 - text: Solutions
   url: /solutions/index.html
