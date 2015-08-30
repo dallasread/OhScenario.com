@@ -218,6 +218,7 @@ Scenario.definePrototype({
         _.socket.on('disconnect', function(){
             _.socket.off();
             _.socket = null;
+            _.render();
         });
 
         _.socket.once('connect', function() {
@@ -304,14 +305,17 @@ Scenario.definePrototype({
     edit: function edit() {
         var _ = this;
 
-        _.$element.css('opacity', 0.5);
         _.render();
 
-        _.socket && _.socket.emit('quit', function() {
-            _.$element.css('opacity', 1);
-            _.render();
-            _.$element.find('select').get(0).focus();
-        });
+        if (_.socket) {
+            _.$element.css('opacity', 0.5);
+
+            _.socket.emit('quit', function() {
+                _.$element.css('opacity', 1);
+                _.render();
+                _.$element.find('select').get(0).focus();
+            });
+        }
     },
 
     toJSON: function toJSON() {
