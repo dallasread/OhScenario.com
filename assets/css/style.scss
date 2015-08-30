@@ -287,8 +287,8 @@ img { max-width: 100%; }
 }
 
 .cta-dialog p {
-    line-height: 1.5em;
+    line-height: 1.5em !important;
     width: 100%;
     text-align: left;
-    padding: 50px;
+    padding: 50px !important;
 }
