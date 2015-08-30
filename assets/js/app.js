@@ -60,8 +60,8 @@ if (params.website) {
     }
 }
 
-$(document).on('click', '.save, .sign-up', function() {
-    $('#sign-up').show();
+$(document).on('click', '.save-scenario, .sign-up', function() {
+    window.Marketing.ctas[7].show();
     return false;
 });
 
