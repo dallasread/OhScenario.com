@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>OhScenario.com</title>
+        <link rel="stylesheet" media="all" href="/dashboard/style.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    </head>
+    <body>
+        <div id="page-container" class="page-sidebar-fixed page-header-fixed">
+            <div id="header" class="header navbar navbar-default navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header dropdown">
+                        <a class="navbar-brand" data-toggle="dropdown" href="#">
+                            <img id="logo" src="/assets/imgs/logo.png" alt="Logo" />
+                        </a>
+                        <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown navbar-user">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="/assets/imgs/avatar.png" />
+                                <span class="hidden-xs">Welcome to OhScenario!</span>
+                                <!-- <b class="caret"></b> -->
+                            </a>
+                            <ul class="dropdown-menu animated fadeInLeft">
+                                <li><a href="#">My Profile</a></li>
+                                <li><a href="#">Users &amp; Permissions</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Invoices</a></li>
+                                <li><a href="#">Change My Plan</a></li>
+                                <li class="divider"></li>
+                                <li><a rel="nofollow" data-method="delete" href="#">Sign Out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="sidebar" class="sidebar">
+                <div data-scrollbar="true" data-height="100%">
+                    <ul class="nav">
+                        <li class="active">
+                            <a href="#">
+                                <i class="fa fa-globe"></i>
+                                <span>Introduction</span>
+                            </a></li>
+                        <li class="">
+                            <a href="#">
+                                <i class="fa fa-play"></i>
+                                <span>Run</span>
+                            </a>            </li>
+                        <li class="">
+                            <a href="#">
+                                <i class="fa fa-sitemap"></i>
+                                <span>Scenarios</span>
+                            </a>            </li>
+                        <li class="">
+                            <a href="#">
+                                <i class="fa fa-link"></i>
+                                <span>Websites</span>
+                            </a>            </li>
+                        <li class="">
+                            <a href="#">
+                                <i class="fa fa-cog"></i>
+                                <span>My Account</span>
+                            </a>            </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="sidebar-bg"></div>
+                            <div id="content" class="content">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="panel panel-inverse">
+                                            <div class="panel-heading">
+                                                <div class="panel-heading-btn">
+                                                    <a href="#" class="expand-panel"><i class="fa fa-arrows-alt expand-pane"></i></a>
+                                                </div>
+                                                <h4 class="panel-title">
+                                                Thanks for signing up!
+                                                </h4>
+                                            </div>
+                                            <div class="panel-body">
+                                                <p>
+                                                    <span style="background: yellow; ">
+                                                        We're putting the final touches on the OhScenario application!
+                                                    </span><br><br>
+                                                    We'll email you in a few weeks when its ready to go!
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                var a = document.getElementsByTagName('a');
+
+                for (var i= 0; i < a.length; ++i){
+                    a[i].onclick = function(e) {
+                        alert('We\'re putting the final touches on the OhScenario application! We\'ll email you in a few weeks when its ready to go!');
+                        e.preventDefault();
+                    }
+                }
+            </script>
+        </body>
+    </html>
