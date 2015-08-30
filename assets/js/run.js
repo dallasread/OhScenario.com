@@ -98,15 +98,6 @@ var CustomElement = require('generate-js-custom-element'),
                     $el.removeClass('hover');
                 }
             },
-            change: {
-                event: 'change keyup',
-                target: '.editing .has-select select',
-                listener: function focus(e, $el) {
-                    var selected = $el.find('option').not(function(){ return !this.selected; }),
-                        value = selected.attr('data-value') || selected.attr('value');
-                    $el.closest('.has-select').find('.select-target').text(value);
-                }
-            },
             blur: {
                 event: 'blur',
                 target: '.editing select',
@@ -116,17 +107,23 @@ var CustomElement = require('generate-js-custom-element'),
             },
             action: {
                 event: 'change',
-                target: '.editing select',
+                target: '.editing .has-select select',
                 listener: function act(e, $el) {
                     var _ = this,
                         step = $el.closest('.step'),
                         id = step.attr('data-id'),
-                        name = $el.attr('name');
+                        name = $el.attr('name'),
+                        selected = $el.find('option').not(function(){ return !this.selected; }),
+                        textValue = selected.attr('data-value') || selected.val(),
+                        select;
 
                     _.steps[id][name] = $el.val();
-                    step = _.renderStep(id);
 
-                    step.find('select[name="' + name + '"]').get(0).focus();
+                    step = _.renderStep(id);
+                    select = step.find('select[name="' + name + '"]');
+
+                    select.closest('.has-select').find('.select-target').text(textValue);
+                    select.get(0).focus();
                 }
             },
             keydown: {
@@ -201,9 +198,7 @@ Scenario.definePrototype({
             step;
 
         _.$element.find('select').each(function() {
-            var selected = $(this).find('option').not(function(){ return !this.selected; }),
-                value = selected.attr('data-value') || selected.attr('value');
-            $(this).closest('.has-select').find('.select-target').text(value);
+            config.interactions.action.listener.call(_, null, $(this));
         });
 
         _.$element.find('.scenario').attr('class', 'scenario running');
