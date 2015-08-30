@@ -201,7 +201,9 @@ Scenario.definePrototype({
             step;
 
         _.$element.find('select').each(function() {
-            $(this).trigger('change');
+            var selected = $(this).find('option').not(function(){ return !this.selected; }),
+                value = selected.attr('data-value') || selected.attr('value');
+            $(this).closest('.has-select').find('.select-target').text(value);
         });
 
         _.$element.find('.scenario').attr('class', 'scenario running');
