@@ -201,7 +201,7 @@ Scenario.definePrototype({
             step;
 
         _.$element.find('select').each(function() {
-            config.interactions.change.listener(null, $(this));
+            $(this).trigger('change');
         });
 
         _.$element.find('.scenario').attr('class', 'scenario running');
