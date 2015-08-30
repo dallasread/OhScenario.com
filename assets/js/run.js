@@ -200,7 +200,10 @@ Scenario.definePrototype({
         var _ = this,
             step;
 
-        _.$element.find('select').change();
+        _.$element.find('select').each(function() {
+            config.interactions.change.listener(null, $(this));
+        });
+
         _.$element.find('.scenario').attr('class', 'scenario running');
         _.$element.find('.step').attr('class', 'step waiting');
         _.$element.find('.steps .step:first-child').attr('class', 'step running');
