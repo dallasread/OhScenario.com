@@ -298,7 +298,7 @@ Scenario.definePrototype({
     edit: function edit() {
         var _ = this;
 
-        _.socket.disconnect();
+        _.socket.emit('quit');
         _.render();
         _.$element.find('select').get(0).focus();
     },
