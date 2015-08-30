@@ -30,7 +30,7 @@ $(document).on('submit', '.intro-content', function() {
 
     if (!website.length) {
         alert('Please enter a valid website.');
-        return;
+        return false;
     }
 
     $('#features').show();
